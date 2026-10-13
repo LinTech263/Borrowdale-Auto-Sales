@@ -32,7 +32,12 @@ export const AdminVehiclesPage: React.FC = () => {
   const navigate = useNavigate();
 
   const isOwner = adminUser?.role === 'owner';
-  const rawAdminVehicles = getAdminVehicles();
+
+  // Local refresh key to force re-read from localStorage after mutations
+  const [localRefreshKey, setLocalRefreshKey] = useState(0);
+  const doRefresh = () => { refreshData(); setLocalRefreshKey(k => k + 1); };
+
+  const rawAdminVehicles = useMemo(() => getAdminVehicles(), [localRefreshKey]);
 
   // Filters & Search
   const [searchTerm, setSearchTerm] = useState('');
@@ -76,7 +81,7 @@ export const AdminVehiclesPage: React.FC = () => {
   const handleBulkStatus = (status: VehicleStatus) => {
     if (selectedIds.length === 0) return;
     bulkUpdateVehicleStatus(selectedIds, status);
-    refreshData();
+    doRefresh();
     addToast(`Updated status to "${status}" for ${selectedIds.length} vehicle(s)`, 'success');
     setSelectedIds([]);
   };
@@ -84,7 +89,7 @@ export const AdminVehiclesPage: React.FC = () => {
   const handleBulkPriceAdjustment = () => {
     if (selectedIds.length === 0 || bulkPercent === 0) return;
     bulkAdjustVehiclePrices(selectedIds, bulkPercent, adminUser?.name || 'Admin');
-    refreshData();
+    doRefresh();
     addToast(`Adjusted prices by ${bulkPercent}% for ${selectedIds.length} vehicle(s)`, 'success');
     setShowBulkPriceModal(false);
     setSelectedIds([]);
@@ -93,7 +98,7 @@ export const AdminVehiclesPage: React.FC = () => {
   const handleDelete = (id: string, title: string) => {
     if (window.confirm(`Are you sure you want to delete ${title}? This cannot be undone.`)) {
       deleteVehicle(id);
-      refreshData();
+      doRefresh();
       addToast('Vehicle removed from system', 'info');
     }
   };
@@ -130,7 +135,7 @@ export const AdminVehiclesPage: React.FC = () => {
     };
 
     saveAdminVehicle(duplicated, priv, adminUser?.name || 'Admin');
-    refreshData();
+    doRefresh();
     addToast(`Duplicated as ${newStockNo} (Draft)`, 'success');
   };
 

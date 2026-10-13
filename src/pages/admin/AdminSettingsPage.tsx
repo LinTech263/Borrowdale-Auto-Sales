@@ -18,9 +18,13 @@ export const AdminSettingsPage: React.FC = () => {
     );
   }
 
+  const doSave = () => {
+    updateSettings(formSettings);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    updateSettings(formSettings);
+    doSave();
   };
 
   return (
@@ -36,7 +40,7 @@ export const AdminSettingsPage: React.FC = () => {
         </div>
 
         <button
-          onClick={handleSubmit}
+          onClick={doSave}
           className="px-6 py-2.5 bg-[#C6A15B] text-[#0A0A0B] font-heading text-sm font-bold uppercase tracking-wider rounded-[2px] hover:bg-[#A8843F] flex items-center gap-1.5 self-start sm:self-auto"
         >
           <Save className="w-4 h-4" />

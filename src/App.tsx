@@ -93,8 +93,8 @@ export default function App() {
 
           {/* Admin Portal Routes */}
           <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboardPage />} />
             <Route path="vehicles" element={<AdminVehiclesPage />} />
             <Route path="vehicles/new" element={<AdminVehicleEditPage />} />

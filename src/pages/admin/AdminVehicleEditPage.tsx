@@ -64,6 +64,8 @@ export const AdminVehicleEditPage: React.FC = () => {
   const [wasPrice, setWasPrice] = useState<number | ''>('');
   const [videoUrl, setVideoUrl] = useState('');
   const [isAiDrafting, setIsAiDrafting] = useState(false);
+  const [viewsCount, setViewsCount] = useState<number>(0);
+  const [isDemo, setIsDemo] = useState<boolean>(false);
 
   // SEO Fields
   const [seoTitle, setSeoTitle] = useState('');
@@ -157,6 +159,8 @@ export const AdminVehicleEditPage: React.FC = () => {
         setImages(vehicle.images || []);
         setSeoTitle(vehicle.seoTitle || '');
         setSeoDescription(vehicle.seoDescription || '');
+        setViewsCount(vehicle.viewsCount || 0);
+        setIsDemo(vehicle.isDemo || false);
 
         setSafetyFeatures((vehicle.features.safety || []).join(', '));
         setComfortFeatures((vehicle.features.comfort || []).join(', '));
@@ -210,8 +214,11 @@ export const AdminVehicleEditPage: React.FC = () => {
     setImages(prev => [...prev, newImg]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const saveVehicle = () => {
+    if (!description.trim()) {
+      addToast('Please add a vehicle description before saving', 'error');
+      return;
+    }
 
     const vehicleId = isNew ? `veh-${Date.now()}` : id!;
 
@@ -255,11 +262,11 @@ export const AdminVehicleEditPage: React.FC = () => {
         exterior: exteriorFeatures.split(',').map(s => s.trim()).filter(Boolean),
       },
       serviceHistory: serviceHistory.trim() || undefined,
-      listedDate: new Date().toISOString(),
-      viewsCount: 0,
+      listedDate: isNew ? new Date().toISOString() : new Date().toISOString(),
+      viewsCount,
       seoTitle: seoTitle.trim() || undefined,
       seoDescription: seoDescription.trim() || undefined,
-      isDemo: true // clearly labeled demo per rules
+      isDemo,
     };
 
     const privatePayload: VehiclePrivate = {
@@ -281,6 +288,11 @@ export const AdminVehicleEditPage: React.FC = () => {
     refreshData();
     addToast(isNew ? 'New vehicle added and published to showroom' : 'Vehicle listing updated successfully', 'success');
     navigate('/admin/vehicles');
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveVehicle();
   };
 
   return (
@@ -306,7 +318,7 @@ export const AdminVehicleEditPage: React.FC = () => {
 
         <button
           type="button"
-          onClick={handleSubmit}
+          onClick={saveVehicle}
           className="px-6 py-2.5 bg-[#C6A15B] text-[#0A0A0B] font-heading text-sm font-bold uppercase tracking-wider rounded-[2px] hover:bg-[#A8843F] flex items-center gap-1.5"
         >
           <Save className="w-4 h-4" />
@@ -568,6 +580,7 @@ export const AdminVehicleEditPage: React.FC = () => {
                 <option value="Coupe">Coupe / Sports</option>
                 <option value="Pick-up">Pick-up</option>
                 <option value="Hatchback">Hatchback</option>
+                <option value="Minibus/Van">Minibus / Van</option>
               </select>
             </div>
           </div>
@@ -661,6 +674,28 @@ export const AdminVehicleEditPage: React.FC = () => {
                 className="w-full bg-[#0A0A0B] border border-[#23272C] rounded-[2px] px-3 py-2 text-xs text-[#F5F2EB]"
               />
             </div>
+          </div>
+
+          {/* Listing Flags */}
+          <div className="flex flex-wrap items-center gap-5 pt-1">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={featured}
+                onChange={e => setFeatured(e.target.checked)}
+                className="accent-[#C6A15B]"
+              />
+              <span className="text-xs text-[#F5F2EB] font-semibold">Featured on Homepage</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isDemo}
+                onChange={e => setIsDemo(e.target.checked)}
+                className="accent-[#C6A15B]"
+              />
+              <span className="text-xs text-[#F5F2EB] font-semibold">Mark as Demo / Display Car</span>
+            </label>
           </div>
         </div>
 

@@ -18,9 +18,13 @@ export const AdminContentPage: React.FC = () => {
   const [newTestVehicle, setNewTestVehicle] = useState('');
   const [newTestComment, setNewTestComment] = useState('');
 
+  const doSave = () => {
+    updateContent(formContent);
+  };
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    updateContent(formContent);
+    doSave();
   };
 
   const handleAddFaq = () => {
@@ -87,7 +91,7 @@ export const AdminContentPage: React.FC = () => {
         </div>
 
         <button
-          onClick={handleSave}
+          onClick={doSave}
           className="px-6 py-2.5 bg-[#C6A15B] text-[#0A0A0B] font-heading text-sm font-bold uppercase tracking-wider rounded-[2px] hover:bg-[#A8843F] flex items-center gap-1.5 self-start sm:self-auto"
         >
           <Save className="w-4 h-4" />

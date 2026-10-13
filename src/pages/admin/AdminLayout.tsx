@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useDealership } from '../../context/DealershipContext';
 import { SeoHead } from '../../components/ui/SeoHead';
@@ -27,9 +27,14 @@ export const AdminLayout: React.FC = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [checklistDismissed, setChecklistDismissed] = useState(false);
 
-  // If not logged in, redirect to login
+  // If not logged in, redirect to login (inside effect to avoid render-phase navigation)
+  useEffect(() => {
+    if (!adminUser) {
+      navigate('/admin/login');
+    }
+  }, [adminUser, navigate]);
+
   if (!adminUser) {
-    navigate('/admin/login');
     return null;
   }
 

@@ -110,22 +110,25 @@ export const DealershipProvider: React.FC<{ children: ReactNode }> = ({ children
   };
 
   const toggleCompare = (id: string): boolean => {
+    const current = getCompareIds();
+    const isAlreadyIn = current.includes(id);
+    // If already maxed out and not in list, warn
+    if (!isAlreadyIn && current.length >= 3) {
+      addToast('Comparison limit reached (max 3 vehicles)', 'error');
+      return false;
+    }
     const res = toggleCompService(id);
     setCompareList(res.list);
     if (res.added) {
       addToast('Added to vehicle comparison (up to 3)', 'info');
     } else {
-      if (getCompareIds().includes(id)) {
-        addToast('Comparison limit reached (max 3 vehicles)', 'error');
-      } else {
-        addToast('Removed from vehicle comparison', 'info');
-      }
+      addToast('Removed from vehicle comparison', 'info');
     }
     return res.added;
   };
 
   const clearCompare = () => {
-    localStorage.removeItem('bas_compare_v1');
+    localStorage.removeItem('bas_compare_v2');
     setCompareList([]);
     addToast('Comparison list cleared', 'info');
   };
