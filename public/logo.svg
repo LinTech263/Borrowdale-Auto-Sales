@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="greenSwoosh" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E7A33"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+    <linearGradient id="orangeSwoosh" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA580C"/>
+      <stop offset="100%" stop-color="#FB923C"/>
+    </linearGradient>
+    <linearGradient id="chromeMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="35%" stop-color="#64748B"/>
+      <stop offset="50%" stop-color="#94A3B8"/>
+      <stop offset="52%" stop-color="#38BDF8"/>
+      <stop offset="65%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Green Top-Left Swoosh -->
+  <path d="M 60 170 C 90 80 230 45 350 70 C 260 75 140 105 105 165 C 100 174 80 180 60 170 Z" 
+        fill="url(#greenSwoosh)"/>
+
+  <!-- Orange Bottom-Right Swoosh -->
+  <path d="M 250 220 C 370 215 480 190 540 120 C 510 185 410 240 260 228 C 255 224 250 222 250 220 Z" 
+        fill="url(#orangeSwoosh)"/>
+
+  <!-- Stylized Metallic BAS Typography -->
+  <g filter="url(#subtleShadow)">
+    <!-- Letter B -->
+    <path d="M 170 185 L 170 85 L 225 85 C 248 85 260 93 260 108 C 260 119 252 127 240 131 C 256 135 265 147 265 162 C 265 178 250 185 225 185 Z M 198 106 L 198 123 L 220 123 C 228 123 234 118 234 114 C 234 109 228 106 220 106 Z M 198 143 L 198 164 L 223 164 C 232 164 238 159 238 153 C 238 147 232 143 223 143 Z"
+          fill="url(#chromeMetal)" stroke="#0F172A" stroke-width="2"/>
+
+    <!-- Letter A -->
+    <path d="M 270 185 L 305 85 L 335 85 L 370 185 L 342 185 L 334 160 L 304 160 L 297 185 Z M 310 139 L 328 139 L 319 108 Z"
+          fill="url(#chromeMetal)" stroke="#0F172A" stroke-width="2"/>
+
+    <!-- Letter S -->
+    <path d="M 380 162 C 382 178 396 187 416 187 C 438 187 452 176 452 160 C 452 146 442 139 422 134 L 412 131 C 400 128 394 123 394 114 C 394 103 404 96 418 96 C 433 96 443 103 446 116 L 468 112 C 463 92 446 80 418 80 C 392 80 372 93 372 114 C 372 130 382 138 398 142 L 410 145 C 424 149 430 154 430 163 C 430 172 420 178 408 178 C 394 178 385 170 382 158 Z"
+          fill="url(#chromeMetal)" stroke="#0F172A" stroke-width="2"/>
+  </g>
+
+  <!-- Subtitle: BORROWDALE AUTO SALES -->
+  <text x="140" y="270" font-family="'Barlow Condensed', 'Arial Black', sans-serif" font-weight="900" font-style="italic" font-size="34" letter-spacing="1" fill="#0E7A33">BORROWDALE</text>
+  <text x="350" y="270" font-family="'Barlow Condensed', 'Arial Black', sans-serif" font-weight="900" font-style="italic" font-size="34" letter-spacing="1" fill="#EA580C">AUTO SALES</text>
+</svg>

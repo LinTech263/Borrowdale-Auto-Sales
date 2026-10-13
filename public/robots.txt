@@ -1,0 +1,9 @@
+# Robots.txt for Borrowdale Auto Sales - Harare, Zimbabwe
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /*?*price=
+Disallow: /*?*sort=
+
+Sitemap: https://borrowdaleautosales.co.zw/sitemap.xml

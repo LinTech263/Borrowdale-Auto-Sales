@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="28" fill="#0A0A0B"/>
+  <rect width="126" height="126" x="1" y="1" rx="27" fill="none" stroke="#23272C" stroke-width="2"/>
+  <path d="M 16 48 C 24 24 56 16 88 24 C 64 26 36 34 26 50 Z" fill="#0E7A33"/>
+  <path d="M 52 104 C 84 102 112 94 120 72 C 110 90 84 108 52 104 Z" fill="#EA580C"/>
+  <text x="64" y="78" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="44" fill="#F5F2EB" text-anchor="middle" letter-spacing="1">BAS</text>
+  <circle cx="64" cy="94" r="2.5" fill="#C6A15B"/>
+</svg>

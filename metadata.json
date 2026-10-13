@@ -1,0 +1,6 @@
+{
+  "name": "Borrowdale Auto Sales | Harare Premium Dealership & Portal",
+  "description": "Premier upmarket car dealership in Borrowdale, Harare, Zimbabwe. Hand-picked luxury SUVs, double cabs, executive sedans, transparent pricing, and instant WhatsApp enquiries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

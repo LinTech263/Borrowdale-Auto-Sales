@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-page: #FFFFFF;
+    --bg-surface: #F8F9FA;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --brass: #C6A15B;
+    --brass-deep: #A8843F;
+    --ember: #B3261E;
+    --brand-green: #0E7A33;
+    --brand-orange: #EA580C;
+    --font-heading: 'Barlow Condensed', sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0F172A;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  /* Custom clean scrollbars */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C6A15B;
+  }
+}
+
+.font-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.font-serif-accent {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+/* Sharp luxury white cards */
+.card-luxury {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card-luxury:hover {
+  border-color: #C6A15B;
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.09), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+}
+
+/* Print spec sheet optimizations */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+  .no-print, header, footer, .floating-actions, .admin-nav {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .card-luxury {
+    border: 1px solid #ddd !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
